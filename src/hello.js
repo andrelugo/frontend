@@ -1,26 +1,61 @@
 import './App.css';
 import './hello.css';
+import {useState, useEffect} from 'react'
 
-function Hello() {
-    return (
-    <div>Hello World!</div>
-);
+export function AddTask() {
 
-}
+    const[texto, setTexto] = useState("");
+    const[count, setCount] = useState(0);
+    const[lista, setLista] = useState([]);
 
-export function Mansur() {
+    useEffect(function(){
+        console.log(lista)
+    },[lista])
+
+    function handleSubmit(event){
+        event.preventDefault();
+        // console.log(event);
+    }
+    function handleClick(event){
+        event.preventDefault();
+        setCount(count +1);
+        setLista([...lista,texto]);
+        // console.log(lista);
+    }
+    // console.log(lista);
+
+    function handleChange(e){
+        setTexto(e.target.value);  
+    }
+
+    // function listar(){
+    //     const listaHtml = []
+    //     lista.forEach(function(element){
+    //         listaHtml.push(<p>{element}</p>);
+    //     })
+    //     return listaHtml
+    // }
+
+    // function listar(){ 
+    //     return lista.map(function(element){ return <p>{element}</p>})
+    // }
+    
+    // const listar = () => lista.map((element) => <p>{element}</p>)
+
+    const Nomedis = (nome_sala) => (nome_sala === "teste") ? <h2 style={{color: 'red'}}>O nome {nome_sala} já existe, escolha outro nome.</h2> : <div><h2 style={{color: 'green'}}>O nome {nome_sala} disponível.</h2><button type="submit">Criar</button></div>
+
     return(
         <div>
-            <p>Crie sua sala:</p>
-            <form className="example" action="">
-            <input type="text" placeholder="Nome da sala..." name="search"></input>
-            <button type="submit">Criar</button>
+            <form className="example" onSubmit={handleSubmit}>
+                <input type="text" onChange={handleChange} placeholder="Adicionar..." name="add"></input>
+                <button type="submit" onClick={handleClick}>Adicionar</button>
             </form>
+            <h1>Clicado {count} vezes.</h1>
+            {Nomedis(texto)}
+            {lista.map((element) => <p>{element}</p>)}
         </div>
         );
 }
-
-export const Nomedis = ({nome_sala="",color="green"}) => (nome_sala != nome_sala) ? <h2 style={{color: 'red'}}>{nome_sala} Já existe, escolha outro nome.</h2> : <div><h2 style={{color}}>{nome_sala} dispível.</h2><button type="submit">Criar</button></div>
 
 // export function Andrezao({saldo="0",color="blue",texto="Beleza"}) {
 //     console.log(saldo)
@@ -36,7 +71,3 @@ export const Nomedis = ({nome_sala="",color="green"}) => (nome_sala != nome_sala
 //     // );
 // return (saldo < 0) ? <h2 style={{color: 'red'}}>{saldo} Fudeu</h2> : <h2 style={{color}}>{saldo} Belezura</h2>
 // }
-
-export const Andrezao = ({saldo="0",color="blue",texto="Beleza"}) => (saldo < 0) ? <h2 style={{color: 'red'}}>{saldo} Fudeu</h2> : <h2 style={{color}}>{saldo} Belez</h2>
-
-export  default Hello
