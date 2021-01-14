@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+  }
+
+  .queue-wrapper {
+      display : flex;
+  }
+  
+  form.form-queue {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 90px;
+    background: gray;
+  }
+
+  /* Style the search field */
+  form.form-queue input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+  }
+  
+  /* Style the submit button */
+  form.form-queue button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+  }
+  
+  form.form-queue button:hover {
+    background: #0b7dda;
+  }
+  
+  /* Clear floats */
+  form.form-queue::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .queue-list{
+    background-color: rgb(17, 16, 16);
+    width: 100%;
+    overflow-y: scroll;
+    margin: 0;
+    padding: 40px;
+    margin-bottom: 90px;
+  }
+
+  .queue-list li{
+    list-style-type: none;
+    color:white;
+    margin: 5px;
+  }
+
