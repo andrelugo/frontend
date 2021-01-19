@@ -1,21 +1,28 @@
-import { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button, Icon } from '@material-ui/core';
-import { QueueList, QueueForm } from '../../components/';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button, Icon } from "@material-ui/core";
+import { QueueList, QueueForm } from "../../components/";
+import axios from "axios";
 
-import './styles.css';
+import "./styles.css";
 
-const Home = ({ storeId = '6005d6adf10778d52e887d89' }) => {
+const Home = () => {
   const classes = useStyles();
 
-  const API_URI = 'http://localhost:8080';
+  const API_URI = "http://localhost:8080";
 
   const [addConsumerForm, setAddConsumerForm] = useState(false);
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [phoneList, setPhoneList] = useState([]);
   const [isPhoneValid, setIsPhoneValid] = useState(true);
+  const [storeId, setStorreId] = useState("");
+
+  useEffect(function () {
+    const storeId = sessionStorage.getItem("storeId");
+
+    setStorreId(storeId);
+  }, []);
 
   useEffect(
     function () {
@@ -61,6 +68,7 @@ const Home = ({ storeId = '6005d6adf10778d52e887d89' }) => {
       })
       .then(function () {
         setPhoneList([...phoneList, { name: name, phone: phone }]);
+        setAddConsumerForm(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -78,7 +86,7 @@ const Home = ({ storeId = '6005d6adf10778d52e887d89' }) => {
             }}
             className={classes.addBtn}
           >
-            <Icon color='primary' style={{ fontSize: 50 }}>
+            <Icon color="primary" style={{ fontSize: 50 }}>
               add_circle
             </Icon>
           </Button>
@@ -108,13 +116,13 @@ const Home = ({ storeId = '6005d6adf10778d52e887d89' }) => {
 
 const useStyles = makeStyles(() => ({
   addBtn: {
-    position: 'fixed',
+    position: "fixed",
     bottom: 0,
     right: 0,
     margin: 20,
   },
   backBtn: {
-    marginTop: 'auto',
+    marginTop: "auto",
   },
 }));
 

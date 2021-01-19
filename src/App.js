@@ -1,21 +1,24 @@
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import './App.css';
-import { StoreList, Login } from './pages/';
-import { AppBar } from './components/';
-import { Container } from '@material-ui/core';
+import "./App.css";
+import { StoreList, Login, Register } from "./pages/";
+import { AppBar } from "./components/";
+import { Container } from "@material-ui/core";
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/store'>
-          <AppBar title='Store xpto' />
+        <Route path="/store">
+          <AppBar title="Store xpto" />
           <Container>
             <StoreList />
           </Container>
         </Route>
-        <Route path='/'>
+        <Route path="/" exact>
+          <Register />
+        </Route>
+        <Route path="/login">
           <Login />
         </Route>
       </Switch>
